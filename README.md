@@ -25,18 +25,15 @@
 
 加载更多,可以监听RecyclerView的滚动事件，通过实现ScrollListener即可
 
- recyclerView.addOnScrollListener(scrollListener);
- 
- private ScrollListener scrollListener = new ScrollListener(mLayoutManager) {
- 
+        recyclerView.addOnScrollListener(scrollListener);
+    private ScrollListener scrollListener = new ScrollListener(mLayoutManager) {
         @Override
-        
         public void onLoadMore() {
-        
-            loadMore();//加载更多
-            
-        }};
-        
+            loadMore();
+            currentPage++;
+            Toast.makeText(mContext, "加载更多" + currentPage, Toast.LENGTH_SHORT).show();
+        }
+    };
  
  
  
