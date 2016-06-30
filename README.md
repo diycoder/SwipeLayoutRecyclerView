@@ -10,7 +10,7 @@
 
 //添加Header和Footer
 
-![image](https://github.com/diycoder/SwipeLayoutRecyclerView/tree/master/recyclerview/screenshot/screenshots2.gif)
+![image](https://github.com/diycoder/SwipeLayoutRecyclerView/blob/master/recyclerview/screenshot/screenshots2.gif)
 
 1、BaseAdapter        基本组成
 
