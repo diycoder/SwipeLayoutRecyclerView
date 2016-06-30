@@ -3,11 +3,10 @@
 
 基本组成
 
- ![image](https://github.com/diycoder/SwipeLayoutRecyclerView/tree/master/recyclerview/screenshot/screenshots.gif)
- 
+ ![image](https://github.com/diycoder/SwipeLayoutRecyclerView/blob/master/recyclerview/screenshot/screenshots.gif)   
 //添加Header
 
-![image](https://github.com/diycoder/SwipeLayoutRecyclerView/tree/master/recyclerview/screenshot/screenshots1.gif)
+![image](https://github.com/diycoder/SwipeLayoutRecyclerView/blob/master/recyclerview/screenshot/screenshots1.gif)
 
 //添加Header和Footer
 
@@ -27,12 +26,22 @@
 加载更多,可以监听RecyclerView的滚动事件，通过实现ScrollListener即可
 
  recyclerView.addOnScrollListener(scrollListener);
+ 
  private ScrollListener scrollListener = new ScrollListener(mLayoutManager) {
+ 
         @Override
+        
         public void onLoadMore() {
+        
             loadMore();//加载更多
-        }
- };
+            
+        }};
+        
+ 
+ 
+ 
+ 
+ 
  
  加载成功后需要将加载更多开关打开
  
