@@ -31,4 +31,8 @@
     <color name="orange">#FFA726</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
+
+    <color name="swipeoption_green">#36CF8E</color>
+    <color name="swipeoption_blue">#3693D0</color>
+    <color name="swipeoption_purple">#ff1744</color>
 </resources>
