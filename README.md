@@ -1,9 +1,9 @@
 # SwipeLayoutRecyclerView
 基于RecyclerView的封装支持下拉刷新，上拉加载更多，添加header，添加footer
 
-基本组成
+仿qq侧拉删除
 
- ![image](https://github.com/diycoder/SwipeLayoutRecyclerView/blob/master/recyclerview/screenshot/screenshots.gif)   
+ ![image](https://github.com/diycoder/SwipeLayoutRecyclerView/blob/master/recyclerview/screenshot/screenshots3.gif)   
 //添加Header
 
 ![image](https://github.com/diycoder/SwipeLayoutRecyclerView/blob/master/recyclerview/screenshot/screenshots1.gif)
