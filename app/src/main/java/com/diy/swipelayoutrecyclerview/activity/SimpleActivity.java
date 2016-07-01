@@ -14,7 +14,6 @@ import com.diy.swipelayoutrecyclerview.R;
 import com.diy.swipelayoutrecyclerview.adapter.TestBaseAdapter;
 import com.diy.swipelayoutrecyclerview.api.Constant;
 import com.diy.swipelayoutrecyclerview.entity.TestData;
-import com.diycoder.library.decoration.GridSpacingItemDecoration;
 import com.diycoder.library.listener.RecyclerTouchListener;
 import com.diycoder.library.listener.ScrollListener;
 
@@ -63,7 +62,7 @@ public class SimpleActivity extends AppCompatActivity implements SwipeRefreshLay
         mRefreshLayout.setOnRefreshListener(this);
         mLayoutManager = new GridLayoutManager(mContext, 1);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, 12, false));
+//        recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, 12, false));
         mAdapter = new TestBaseAdapter(mContext);
         mAdapter.setDataList(data);
         mAdapter.setHasMoreData(true);
@@ -84,19 +83,19 @@ public class SimpleActivity extends AppCompatActivity implements SwipeRefreshLay
                         Toast.makeText(getApplicationContext(), "Button in row " + (position + 1) + " clicked!", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .setSwipeOptionViews(R.id.add, R.id.edit, R.id.change)
+                .setSwipeOptionViews(R.id.start, R.id.thumb, R.id.favorite)
                 .setSwipeable(R.id.rowFG, R.id.rowBG, new RecyclerTouchListener.OnSwipeOptionsClickListener() {
                     @Override
                     public void onSwipeOptionClicked(int viewID, int position) {
                         String message = "";
-                        if (viewID == R.id.add) {
-                            message += "Add";
-                        } else if (viewID == R.id.edit) {
-                            message += "Edit";
-                        } else if (viewID == R.id.change) {
-                            message += "Change";
+                        if (viewID == R.id.start) {
+                            message += "收 藏";
+                        } else if (viewID == R.id.thumb) {
+                            message += "点 赞";
+                        } else if (viewID == R.id.favorite) {
+                            message += "喜 欢";
                         }
-                        message += " clicked for row " + (position + 1);
+                        message += " position-> " + (position + 1);
                         Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -108,7 +107,7 @@ public class SimpleActivity extends AppCompatActivity implements SwipeRefreshLay
         public void onLoadMore() {
             loadMore();
             currentPage++;
-            Toast.makeText(mContext, "加载更多" + currentPage, Toast.LENGTH_SHORT).show();
+            Toast.makeText(mContext, "加载更多 page->" + currentPage, Toast.LENGTH_SHORT).show();
         }
     };
 
