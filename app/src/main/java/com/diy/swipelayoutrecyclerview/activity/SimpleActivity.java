@@ -14,6 +14,7 @@ import com.diy.swipelayoutrecyclerview.R;
 import com.diy.swipelayoutrecyclerview.adapter.TestBaseAdapter;
 import com.diy.swipelayoutrecyclerview.api.Constant;
 import com.diy.swipelayoutrecyclerview.entity.TestData;
+import com.diycoder.library.decoration.GridSpacingItemDecoration;
 import com.diycoder.library.listener.RecyclerTouchListener;
 import com.diycoder.library.listener.ScrollListener;
 
@@ -62,31 +63,32 @@ public class SimpleActivity extends AppCompatActivity implements SwipeRefreshLay
         mRefreshLayout.setOnRefreshListener(this);
         mLayoutManager = new GridLayoutManager(mContext, 1);
         recyclerView.setLayoutManager(mLayoutManager);
-//        recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, 12, false));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, 12, false));
         mAdapter = new TestBaseAdapter(mContext);
         mAdapter.setDataList(data);
         mAdapter.setHasMoreData(true);
         recyclerView.setAdapter(mAdapter);
         recyclerView.addOnScrollListener(scrollListener);
+        //添加触摸监听
         onTouchListener = new RecyclerTouchListener(this, recyclerView);
         onTouchListener
                 .setIndependentViews(R.id.rowButton)
                 .setViewsToFade(R.id.rowButton)
                 .setClickable(new RecyclerTouchListener.OnRowClickListener() {
                     @Override
-                    public void onRowClicked(int position) {
+                    public void onRowClicked(int position) {//item点击监听
                         Toast.makeText(mContext, "Row " + (position + 1) + " clicked!", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
-                    public void onIndependentViewClicked(int independentViewID, int position) {
+                    public void onIndependentViewClicked(int independentViewID, int position) {//button点击监听
                         Toast.makeText(getApplicationContext(), "Button in row " + (position + 1) + " clicked!", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setSwipeOptionViews(R.id.start, R.id.thumb, R.id.favorite)
                 .setSwipeable(R.id.rowFG, R.id.rowBG, new RecyclerTouchListener.OnSwipeOptionsClickListener() {
                     @Override
-                    public void onSwipeOptionClicked(int viewID, int position) {
+                    public void onSwipeOptionClicked(int viewID, int position) {//侧拉出现的三个按钮监听事件
                         String message = "";
                         if (viewID == R.id.start) {
                             message += "收 藏";
