@@ -5,7 +5,11 @@ package com.diy.swipelayoutrecyclerview.entity;
  */
 public class TestData {
 
-    public String title;
+    public String icon;
 
     public int height;
+
+    public String nick;
+
+    public String msg;
 }

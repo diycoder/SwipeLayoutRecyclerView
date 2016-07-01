@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
+
 import com.bumptech.glide.Glide;
 import com.diy.swipelayoutrecyclerview.R;
 import com.diy.swipelayoutrecyclerview.entity.TestData;
@@ -27,26 +29,33 @@ public class TestBaseAdapter extends BaseAdapter<TestData, TestBaseAdapter.ItemV
 
     @Override
     public ItemViewHolder onCreateItemViewHolder(ViewGroup parent, int viewType) {
-        return new ItemViewHolder(mLayoutInflater.inflate(R.layout.item_test_item, parent, false));
+        return new ItemViewHolder(mLayoutInflater.inflate(R.layout.recycler_row, parent, false));
     }
 
     @Override
     public void onBindItemViewHolder(ItemViewHolder holder, int position) {
         TestData data = getItemData(position);
         if (data != null) {
-            String title = data.title;
-            Glide.with(mContext).load(title).centerCrop().into(holder.textView);
+            String url = data.icon;
+            Glide.with(mContext).load(url).centerCrop().into(holder.userIcon);
+            holder.mainText.setText(data.nick);
+            holder.subText.setText(data.msg);
         }
     }
 
 
     //内容 ViewHolder
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
-        private ImageView textView;
+
+        private final TextView mainText;
+        private final TextView subText;
+        private final ImageView userIcon;
 
         public ItemViewHolder(View itemView) {
             super(itemView);
-            textView = (ImageView) itemView.findViewById(R.id.tv_item_text);
+            mainText = (TextView) itemView.findViewById(R.id.mainText);
+            subText = (TextView) itemView.findViewById(R.id.subText);
+            userIcon = (ImageView) itemView.findViewById(R.id.userIcon);
         }
     }
 

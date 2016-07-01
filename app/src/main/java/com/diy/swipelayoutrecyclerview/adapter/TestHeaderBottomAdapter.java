@@ -35,8 +35,8 @@ public class TestHeaderBottomAdapter extends HeaderBottomAdapter<TestData, TestH
     public void onBindItemViewHolder(ItemViewHolder holder, int position) {
         TestData data = getItemData(position);
         if (data != null) {
-            String title = data.title;
-            Glide.with(mContext).load(title).centerCrop().into(holder.textView);
+            String url = data.icon;
+            Glide.with(mContext).load(url).centerCrop().into(holder.textView);
         }
     }
 

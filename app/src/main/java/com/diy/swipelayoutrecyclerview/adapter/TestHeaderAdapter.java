@@ -36,10 +36,10 @@ public class TestHeaderAdapter extends HeaderAdapter<TestData, TestHeaderAdapter
         ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
         TestData data = getItemData(position);
         if (data != null) {
-            String title = data.title;
+            String url = data.icon;
             layoutParams.height = data.height;
             holder.itemView.setLayoutParams(layoutParams);
-            Glide.with(mContext).load(title).centerCrop().into(holder.textView);
+            Glide.with(mContext).load(url).centerCrop().into(holder.textView);
         }
     }
 

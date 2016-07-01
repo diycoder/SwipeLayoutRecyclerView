@@ -10,12 +10,14 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.Toast;
 
-import com.diy.swipelayoutrecyclerview.api.Constant;
 import com.diy.swipelayoutrecyclerview.R;
 import com.diy.swipelayoutrecyclerview.adapter.TestBaseAdapter;
+import com.diy.swipelayoutrecyclerview.api.Constant;
 import com.diy.swipelayoutrecyclerview.entity.TestData;
 import com.diycoder.library.decoration.GridSpacingItemDecoration;
+import com.diycoder.library.listener.RecyclerTouchListener;
 import com.diycoder.library.listener.ScrollListener;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,6 +33,7 @@ public class SimpleActivity extends AppCompatActivity implements SwipeRefreshLay
     private TestBaseAdapter mAdapter;
     private GridLayoutManager mLayoutManager;
     private int currentPage = 0;
+    private RecyclerTouchListener onTouchListener;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,7 +48,9 @@ public class SimpleActivity extends AppCompatActivity implements SwipeRefreshLay
     private void initData() {
         for (int i = 0; i < 15; i++) {
             TestData testData = new TestData();
-            testData.title = Constant.imags[i];
+            testData.icon = Constant.imags[i];
+            testData.nick = Constant.nick[i];
+            testData.msg = Constant.msg[i];
             testData.height = (int) (200 + Math.random() * 400);
             data.add(testData);
         }
@@ -56,15 +61,46 @@ public class SimpleActivity extends AppCompatActivity implements SwipeRefreshLay
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
 
         mRefreshLayout.setOnRefreshListener(this);
-        mLayoutManager = new GridLayoutManager(mContext, 2);
+        mLayoutManager = new GridLayoutManager(mContext, 1);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, 12, false));
+        recyclerView.addItemDecoration(new GridSpacingItemDecoration(1, 12, false));
         mAdapter = new TestBaseAdapter(mContext);
         mAdapter.setDataList(data);
         mAdapter.setHasMoreData(true);
         recyclerView.setAdapter(mAdapter);
         recyclerView.addOnScrollListener(scrollListener);
+        onTouchListener = new RecyclerTouchListener(this, recyclerView);
+        onTouchListener
+                .setIndependentViews(R.id.rowButton)
+                .setViewsToFade(R.id.rowButton)
+                .setClickable(new RecyclerTouchListener.OnRowClickListener() {
+                    @Override
+                    public void onRowClicked(int position) {
+                        Toast.makeText(mContext, "Row " + (position + 1) + " clicked!", Toast.LENGTH_SHORT).show();
+                    }
 
+                    @Override
+                    public void onIndependentViewClicked(int independentViewID, int position) {
+                        Toast.makeText(getApplicationContext(), "Button in row " + (position + 1) + " clicked!", Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .setSwipeOptionViews(R.id.add, R.id.edit, R.id.change)
+                .setSwipeable(R.id.rowFG, R.id.rowBG, new RecyclerTouchListener.OnSwipeOptionsClickListener() {
+                    @Override
+                    public void onSwipeOptionClicked(int viewID, int position) {
+                        String message = "";
+                        if (viewID == R.id.add) {
+                            message += "Add";
+                        } else if (viewID == R.id.edit) {
+                            message += "Edit";
+                        } else if (viewID == R.id.change) {
+                            message += "Change";
+                        }
+                        message += " clicked for row " + (position + 1);
+                        Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                    }
+                });
+        recyclerView.addOnItemTouchListener(onTouchListener);
     }
 
     private ScrollListener scrollListener = new ScrollListener(mLayoutManager) {

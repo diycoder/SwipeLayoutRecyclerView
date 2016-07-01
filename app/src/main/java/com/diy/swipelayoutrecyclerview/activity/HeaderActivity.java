@@ -45,7 +45,7 @@ public class HeaderActivity extends AppCompatActivity implements SwipeRefreshLay
     private void initData() {
         for (int i = 0; i < 15; i++) {
             TestData testData = new TestData();
-            testData.title = Constant.imags[i];
+            testData.icon = Constant.imags[i];
             testData.height = (int) (400 + Math.random() * 100);
             data.add(testData);
         }

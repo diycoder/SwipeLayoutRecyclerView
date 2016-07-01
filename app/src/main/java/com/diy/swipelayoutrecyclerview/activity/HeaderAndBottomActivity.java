@@ -42,7 +42,7 @@ public class HeaderAndBottomActivity extends AppCompatActivity implements SwipeR
     private void initData() {
         for (int i = 0; i < 19; i++) {
             TestData testData = new TestData();
-            testData.title = Constant.imags[i];
+            testData.icon = Constant.imags[i];
             testData.height = (int) (200 + Math.random() * 400);
             data.add(testData);
         }
